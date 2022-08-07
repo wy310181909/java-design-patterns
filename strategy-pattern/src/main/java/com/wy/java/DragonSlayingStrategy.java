@@ -26,8 +26,9 @@ package com.wy.java;
 /**
  * Strategy interface.
  */
-@FunctionalInterface
 public interface DragonSlayingStrategy {
+
+  String getType();
 
   void execute();
 

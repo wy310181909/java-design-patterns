@@ -24,22 +24,21 @@
 package com.wy.lambda;
 
 import com.sun.media.jfxmedia.logging.Logger;
+import com.wy.utils.PropertiesUtil;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 @Slf4j
 public class App {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
+
+
+
     DragonSlayer dragonSlayer = new DragonSlayer(
         () -> log.info("With your Excalibur you severe the dragon's head!"));
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.getByType(PropertiesUtil.getProperties("type")));
     dragonSlayer.goToBattle();
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
-    dragonSlayer.goToBattle();
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
-    dragonSlayer.goToBattle();
-    log.debug("tes");
 
   }
 }

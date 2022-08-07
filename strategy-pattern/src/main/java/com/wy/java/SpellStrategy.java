@@ -24,10 +24,18 @@
 package com.wy.java;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Spell strategy.
  */
+@Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
+
+  @Override
+  public String getType() {
+    return "spell";
+  }
 
   @Override
   public void execute() {

@@ -24,17 +24,45 @@
 package com.wy.java;
 
 
+import com.wy.utils.ClassUtil;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Factory of coins.
  */
 public class DragonSlayingStrategyFactory {
 
-  /**
-   * Factory method takes as a parameter the coin type and calls the appropriate class.
-   */
-  public static DragonSlayingStrategy getStrategy(String type) throws Exception {
-    Class c=Class.forName(type);
-    return (DragonSlayingStrategy)c.newInstance();
+    private static Map<String, DragonSlayingStrategy> map = new HashMap<>();
 
-  }
+    static {
+        List<Class<DragonSlayingStrategy>> interfaceImpls = ClassUtil.getInterfaceImpls(DragonSlayingStrategy.class);
+        for (Class<DragonSlayingStrategy> item : interfaceImpls) {
+
+            try {
+                DragonSlayingStrategy dragonSlayingStrategy = item.newInstance();
+                String className = dragonSlayingStrategy.getType();
+                map.put(className,dragonSlayingStrategy);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    /**
+     * Factory method takes as a parameter the coin type and calls the appropriate class.
+     */
+    public static DragonSlayingStrategy getStrategy(String type) throws Exception {
+
+        DragonSlayingStrategy item = map.get(type);
+        if (item==null){
+            throw new RuntimeException("type错误");
+        }
+        return item;
+
+    }
 }

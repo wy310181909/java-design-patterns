@@ -9,14 +9,13 @@ public class PropertiesUtil {
     static final String RESOURCE_PATH = "config.properties";
 
     /**
-     * 默认用 fileInputStream
-     * 因为类加载器用了 bufferInputStream装饰器（没必要）
+     * 默认用 类加载器，容易封装
      * @param value
      * @return
      * @throws Exception
      */
     public static String getProperties(String value) throws Exception{
-        return getProperties1(value);
+        return getProperties2(value);
     }
 
     /**
@@ -32,7 +31,7 @@ public class PropertiesUtil {
     }
 
     /**
-     * 使用类加载器读取配置文件
+     * 使用类加载器读取配置文件 底层是bufferInputStream
      */
     public static String getProperties2(String value) throws Exception {
         Properties properties = new Properties();

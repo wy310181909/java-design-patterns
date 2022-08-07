@@ -24,19 +24,23 @@
 package com.wy.java;
 
 
+import com.wy.utils.ClassUtil;
 import com.wy.utils.PropertiesUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
-
     public static void main(String[] args) throws Exception {
-        DragonSlayer dragonSlayer = new DragonSlayer(
-                DragonSlayingStrategyFactory.getStrategy(
-                        PropertiesUtil.getProperties("className")));
+        DragonSlayingStrategy strategy = DragonSlayingStrategyFactory.getStrategy(
+                PropertiesUtil.getProperties("type"));
+
+        DragonSlayer dragonSlayer = new DragonSlayer(strategy);
         dragonSlayer.goToBattle();
-        dragonSlayer.changeStrategy(new ProjectileStrategy());
-        dragonSlayer.goToBattle();
-        dragonSlayer.changeStrategy(new SpellStrategy());
-        dragonSlayer.goToBattle();
+//        dragonSlayer.changeStrategy(new ProjectileStrategy());
+//        dragonSlayer.goToBattle();
+//        dragonSlayer.changeStrategy(new SpellStrategy());
+//        dragonSlayer.goToBattle();
     }
 }

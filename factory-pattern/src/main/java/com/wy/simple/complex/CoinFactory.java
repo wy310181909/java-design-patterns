@@ -34,15 +34,13 @@ public class CoinFactory {
       // 做一些特殊的配置
       CopperCoin.DESCRIPTION = CopperCoin.DESCRIPTION + "（初始化过的）";
 
-      CopperCoin copperCoin = new CopperCoin();
       // 初始化
-      return copperCoin;
+      return new CopperCoin();
     }else if ("goldCoin".equals(type)){
       // 做一些特殊的配置
       GoldCoin.DESCRIPTION = GoldCoin.DESCRIPTION + "（初始化过的）";
 
-      GoldCoin goldCoin = new GoldCoin();
-      return goldCoin;
+      return new GoldCoin();
     }else {
       throw new Exception("参数错误");
     }
