@@ -29,9 +29,7 @@ package com.wy.simple.java;
  */
 public class CoinFactory {
 
-  /**
-   * Factory method takes as a parameter the coin type and calls the appropriate class.
-   */
+
   public static Coin getCoin(String type) throws Exception {
     Class c=Class.forName(type);
     return (Coin)c.newInstance();

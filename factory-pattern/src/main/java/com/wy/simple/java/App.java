@@ -25,7 +25,9 @@ package com.wy.simple.java;
 
 
 import com.wy.utils.PropertiesUtil;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class App {
 
   public static void main(String[] args) throws Exception {
